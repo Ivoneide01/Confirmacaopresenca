@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Presença - Chá de Bebê</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('/papel.png');
+            background-size: cover; /* Faz com que a imagem cubra todo o fundo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Impede que a imagem se repita */
+        }
+        .container {
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            
+            
+        }
+        input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h2{
+            color: aliceblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra do texto */
+        }
+        p{
+            color: aliceblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra do texto */
+        }
+        h1{
+            color: aliceblue;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra do texto */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Você é um convidado!<br /></h1><h2> Por favor, confirme sua presença</h2>
+    <p>Insira seu nome abaixo<br /> para confirmar presença no Chá de Bebê:</p>
+    <input type="text" id="nome" placeholder="Digite seu nome">
+    <button onclick="confirmarPresenca()">Confirmar Presença</button>
+    <p><a href="lista.html">Ver lista de confirmados</a></p>
+</div>
+
+<script>
+    function confirmarPresenca() {
+        const nome = document.getElementById('nome').value.trim();
+
+        if (nome === "") {
+            alert("Por favor, insira seu nome.");
+            return;
+        }
+
+        // Verifica se o localStorage já possui a lista de nomes
+        let nomesConfirmados = JSON.parse(localStorage.getItem('nomesConfirmados')) || [];
+
+        // Adiciona o nome à lista
+        nomesConfirmados.push(nome);
+
+        // Salva a lista de volta ao localStorage
+        localStorage.setItem('nomesConfirmados', JSON.stringify(nomesConfirmados));
+
+        alert("Presença confirmada!");
+        document.getElementById('nome').value = ""; // Limpa o campo de nome
+    }
+</script>
+
+</body>
+</html>
